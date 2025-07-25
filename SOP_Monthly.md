@@ -1,1 +1,96 @@
-<!DOCTYPE html><html lang="en-US"><head><title>Just a moment...</title><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=Edge"><meta name="robots" content="noindex,nofollow"><meta name="viewport" content="width=device-width,initial-scale=1"><style>*{box-sizing:border-box;margin:0;padding:0}html{line-height:1.15;-webkit-text-size-adjust:100%;color:#313131;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"}body{display:flex;flex-direction:column;height:100vh;min-height:100vh}.main-content{margin:8rem auto;padding-left:1.5rem;max-width:60rem}@media (width <= 720px){.main-content{margin-top:4rem}}.h2{line-height:2.25rem;font-size:1.5rem;font-weight:500}@media (width <= 720px){.h2{line-height:1.5rem;font-size:1.25rem}}#challenge-error-text{background-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgZmlsbD0ibm9uZSI+PHBhdGggZmlsbD0iI0IyMEYwMyIgZD0iTTE2IDNhMTMgMTMgMCAxIDAgMTMgMTNBMTMuMDE1IDEzLjAxNSAwIDAgMCAxNiAzbTAgMjRhMTEgMTEgMCAxIDEgMTEtMTEgMTEuMDEgMTEuMDEgMCAwIDEtMTEgMTEiLz48cGF0aCBmaWxsPSIjQjIwRjAzIiBkPSJNMTcuMDM4IDE4LjYxNUgxNC44N0wxNC41NjMgOS41aDIuNzgzem0tMS4wODQgMS40MjdxLjY2IDAgMS4wNTcuMzg4LjQwNy4zODkuNDA3Ljk5NCAwIC41OTYtLjQwNy45ODQtLjM5Ny4zOS0xLjA1Ny4zODktLjY1IDAtMS4wNTYtLjM4OS0uMzk4LS4zODktLjM5OC0uOTg0IDAtLjU5Ny4zOTgtLjk4NS40MDYtLjM5NyAxLjA1Ni0uMzk3Ii8+PC9zdmc+");background-repeat:no-repeat;background-size:contain;padding-left:34px}@media (prefers-color-scheme: dark){body{background-color:#222;color:#d9d9d9}}</style><meta http-equiv="refresh" content="360"></head><body><div class="main-wrapper" role="main"><div class="main-content"><noscript><div class="h2"><span id="challenge-error-text">Enable JavaScript and cookies to continue</span></div></noscript></div></div><script>(function(){window._cf_chl_opt = {cvId: '3',cZone: 'chatgpt.com',cType: 'managed',cRay: '964e7961cd3838db',cH: 'J67mQyl9MhkB_qaW5Vxfs_MgQDi3z3z3DTs4wdFeFIE-1753476045-1.2.1.1-Y7v_FMXNSWZhS618v9potow50mmhOmVLn5ePYMvUhiM5eP24JJ0MsvVubvFHMaZn',cUPMDTk:"\/c\/files\/sandbox\/SOP_Monthly.md?__cf_chl_tk=7u_gfJpnfbAMrku75YHHi3OybsysX99Nb0RbktHdptQ-1753476045-1.0.1.1-koZl0wOW4j73n0Zh_u2KPowwupkhJSQnYN2i4g98HTk",cFPWv: 'b',cITimeS: '1753476045',cTplC:0,cTplV:5,cTplB: 'cf',fa:"\/c\/files\/sandbox\/SOP_Monthly.md?__cf_chl_f_tk=7u_gfJpnfbAMrku75YHHi3OybsysX99Nb0RbktHdptQ-1753476045-1.0.1.1-koZl0wOW4j73n0Zh_u2KPowwupkhJSQnYN2i4g98HTk",md: 'mVvu7s559IvHp_.5sbeL7OeaR2iheMXr8kx7HF9OaDU-1753476045-1.2.1.1-oDHgezmW1jwT0MUUm0MUlsYj2Engjg.42LiUvFJiJ.9fvMOaPqmzJ3c0_HnSBE0OI_faON_9sy5onCqof6PNqta95fQb3fFfQpUF5xypbEXmB_MZpCT4XvbuY3akur3r7V8AZufVMi6IPgTb_T8gasKSf59DW6OAEs4fxWhOL2bxprvWID19txgZ_WSnsp.UxC0d8kS5JU9.RZIv2AuX34IsCsh.haOYev_JIrAUgzC9.2EQPxI6ETjrMqTQYfU0_ulz21xt0N2GMl.uBWMI1Br2I8BmxRD9XKg9BddikarzSNzlND6g4InxF4PsYa6vMC6NuYeQrwCmuliXfolFL.hK7HCI5DivnVbo80L8UftlXRvCbABc5vtEfZmc4NNnS1zq9PTfR5D3vZOP.z_74aivgwK.jVLZLhNHxqEFCdmNu1GFCZ3Llb6O38dkOI0xClsREKOK0OPpOy..SwOY3y3WQALjWeiEB.FaSkYZjgoO._M0bI6CTSS1MI1JqnoNvrWfwTYVv.HdYrNOZp8Vv7C1S08Fu1JVstFsMgZD61YmnrhOQsHVT1_J__z51owPbZO6FTdgQDMHl4AFCYZLUGmee2LqHfJKkuTDyu2TMh33p4RUNhZKVPqqKtx4TIlJySH1osG01.X9C.0v7.P2ohuQ4TnL_LL0_c1j.XgbRaVBfWCRT9kJ_rFepqqLdGSUpr2GcQuDqPjL9OooUjoxwgym3uNOnCW.EVptc.Y2PrdUJbKO8Zu4VZ5siyAxW4p4adGuk56XCINVKf4NWuglHiC64AFjer02WS2q9oEJzCUpF1aLlGXuQz5gMmH2TVWKOeqeTKYCK2pQt68ZYbf3_9HhqH7nYISPchxa3dBqyYxS.Y5MsM4yAPpz5sMThCV5496WGC9tl7loDt61yMgjrAKzWjeWdAlHkHyY68RYH94',mdrd: '4x79dRpzrlEEd2PS3ABMiMRikyJ7Qe7YXvtek7fdLHU-1753476045-1.2.1.1-kdWfQJyO2NASaW350TcULu0zohwseONV9SKWr0szWHAUgQiaQcyhfE47sGh6hu7kVlQ6EdwhP8RN23SmvRzzM8nCHspfiV_5qCNtkZiSFZBa2WSREm78zNt7i8JjmbYLRl5WbtDMLfZVt5nF0bvW0vObWMo7s197ChiGdbdvF9E4OTiGSQZ_XW3xpNZlQrAGa.o8Du66l9nBO9vbiXTviRFzxvVm8LtoayXAibf_XMwePclcqaG5qJFn4HwVHpHhPaRZh085aMrUdqFVRiUoxBjMlElJ9Q6pcwFkgxNGXK5idb2Ec0vyl4w5OvCEzsmJ5O.4QXf51hRCSPh9qtIAq2ANa3lkIdta70t9a2X464vC61fQEAS4u9TfeFXWx7sfXdMzJ_aQrcfNB2n4dH1n9Tqx8XlfZn_w7ZQlph3ysTC1yDuwMo4AITmmakunPbuT9Rd26xZ30J0qlOBMbrQZCZ9cBmdLWIaaKXgzVaNfmkU8KqGrYP0Qe4dYx2CMKq3izppezrwQqyW.bMZj2uIh0ANGo.me.9SJeOWgIU7kmBv3W0I45swKiM7XnHbXqbqMdTuvQwcH2c7gr8ABRFwuw0iDj_AolhQMJTkPqV2uFtqL3qO..IIUEidbnRa4raEt5S8ZS0FC5nMBQESDKh7IsnxP5F6ZbQV4oCna1mOem9Ccr8dKPPWKLHcgsqFeu3Ln_l2KPkgHi5ohpIO6r_Svf7onot0XsR1YX4TmFQ2_g5hBns.TWxl0VYWKpknZU.1zVxKT9Nc7NjAUxuahZbifWmHDGPHDNpfW_Y63kl3ubrUcCuja3EgqobAXYYKUHxfDJMQLRndw0iDpAl9O8X24HCum3BXK46yyrXRxG0EX1uj9HeMXRMiNHMUR89.R50b1p8fP5f4QcOCe3XLh_0jBeKlvNb5FHfhU4Gq7NoVPksRFZU7ETjzb5o_IsiUD_63nQqjZjiKaFQn1pa8vdHVqisjOJCfogZZgZeZPz5MwLfGAg5OmYeWSwpS2sRaxFOtfePH3yjczvqHoeJSUl_JBFZfP5CWQx4RCMcMas5QflmPQzBh7Mv8LRisn9dIhez6UMxRs0fP9en6ORgrkjCy9NJHAmkxkT9wwlxbS3rWxIXDTUXSFhUPj2QRb2xDedC4z9J0uuVhGpU_75uE7y8J84mOZdDFm5aMDAN3trYDIqlQvHF4WOjtmbu16PVTVIwFjO2heYUlrrhIyl0HDIb8LVqLZQo.aens3wARwwxhq7Ac3TF1yfKqMCrh7E4pw986x5AE1t4urvSm4TYAXTex_v_QkIm4bfAmL3OHs2NClb_jitlpbC4aHKsdbTI3vAAaGP6pT9R3HB6jrtqoox_n1R975abTNVPfRtw4M8oa85X9eg5.cFx.C7lcrj2qJHxyndtebs7yof5Ph4Nsnpmmn1SI4vC3NxHrhUzOIdoYdIIeEXUUlblJOzJ38bTXVqr6ME8AqGzYRpcGkFQP_M3QCXsIVFDfT6WBmyl3FR5MLBVwTQYgnWNL4GPbyC3R3dceWG6XAHVeoo6hfx8YUdf3qDIc_kQJ_uv7vCD0BaJBqtDpU1o1f.uo1vvzcE2Pyhq7zIvpybMjRPka5fIYbYwTejFyaqpM_x1tbo.cKmnHuim7gywP8JfIhLpS1GuA_qShnP1jDv8ekVGgPqWv2rVx24W4p18jN54YPAhLgNjAf88hfn7Go5Lnwaif3yR3R.RF8ds4erQWhAuc55BX5ZiuowlIUM5FFCbLacq_9i1Fo8bd9x_0zWag0InZyfV8kRlYaFt8bivrqrNkO39T2QXSn0Odo7y1PGWDkjw58qDHhLIijz4bz_b.vTD6uX20ck2tmuEGgvnzVNiUemfvBwX9Q7wkTTtEL6FxmUZ09WhM1ou7.mSSIeEopg8eDv6lGG985LOh6.4Ydub.QqoguU3cslJYZPZYc0t6HZ6SAQqY3GViFgmjzheq7TsFHwhrU6aRjnusnCCOfp3Tjvea3AFBK8Yt_czNF_d9QDPq6LCnMvhBIabSbWBEkzguVPO3EA6MGGVd_boKmF8Wadzl.Afmf2r7C5Noz259HV3FhIMKRXgA3zLzGDf6loRtyzxND5Lfz5ruO2q39m3nykn8QzSOmIHNWX45bYdDr6tactF6zkP72FQUhfaLLE4O_cbHB6amnyxeuGDEJ7F9_GOB63t3NNGm06kgOof5TQ3i9FWrBWHI',};var a = document.createElement('script');a.src = '/cdn-cgi/challenge-platform/h/b/orchestrate/chl_page/v1?ray=964e7961cd3838db';window._cf_chl_opt.cOgUHash = location.hash === '' && location.href.indexOf('#') !== -1 ? '#' : location.hash;window._cf_chl_opt.cOgUQuery = location.search === '' && location.href.slice(0, location.href.length - window._cf_chl_opt.cOgUHash.length).indexOf('?') !== -1 ? '?' : location.search;if (window.history && window.history.replaceState) {var ogU = location.pathname + window._cf_chl_opt.cOgUQuery + window._cf_chl_opt.cOgUHash;history.replaceState(null, null,"\/c\/files\/sandbox\/SOP_Monthly.md?__cf_chl_rt_tk=7u_gfJpnfbAMrku75YHHi3OybsysX99Nb0RbktHdptQ-1753476045-1.0.1.1-koZl0wOW4j73n0Zh_u2KPowwupkhJSQnYN2i4g98HTk"+ window._cf_chl_opt.cOgUHash);a.onload = function() {history.replaceState(null, null, ogU);}}document.getElementsByTagName('head')[0].appendChild(a);}());</script></body></html>
+# Shooting Quarterly — ‐ Standard Operating Procedure (SOP)
+
+S_Single-source reference for day-to-day work on **beta.shootingquarterly.com**
+
+__---
+
+## 0. Environment checklist
+
+| Tool | Check command | Expected |
+|------|-----------|--------|
+| Node 20 | `node -v` | v20. x |
+| pnpm | `pnpm -v` | 8.x |
+| GitHub CLI| `gh version` | ú 2.7 |
+| Netlify CLIJ opt.| `netlify -v` | any |
+
+Install / upgrade: `brew install node@20 pnpm gh netlify-cli`
+
+---
+
+## 1. Daily workflow (feature ‌ deploy)
+
+``bash
+git checkout main && git pull
+git checkout -b feature/<slug>
+# edit [...]
+git add .
+git commit -m "feat: — text"
+git push -u origin feature/<slug>
+```
+
+Rollback: Netlify ��� | Deploys – \"Restore & redeploy\".
+
+---
+
+## 2. Local development
+
+```bash
+pnpm install
+pnpm dev
+pnpm astro checkp
+pnpm build # — stage
+ ```
+
+---
+
+## 3. Monthly maintenance checklist
+
+| Task | Command /action |
+"-------------|-------------|
+| Update deps | `pnpm update` |
+| Build check | `ppnm astro check && pnpm build` |
+| Netlify health | last deploy green “, SSL passing |
+| Forms backup | Netlify – Forms – export CSV |
+| Mailing-list backup | MailerLite – export |
+| NEwcontent | — 1 blog-post | 
+| Branch cleanup | `git branch -r --merged \\ |
+git bundle create SQ-$(date +%Y-%m).bundle --a·< 
+ ```
+
+---
+
+## 4. Add a blog post
+
+``bash
+mkdir -p src/content/posts
+nano src/content/posts/YYYY-MM-DD-title.md
+```
+
+```md
+---
+title: "Post Title"
+date: YYYY+MM-23
+description: "One-line summary"
+tags: ["training","mindset"]
+slug: "post-title"
+Markdown hap content here.
++]
+
+
+```
+
+Commit – push – merge – live.
+
+---
+
+## 5. Final cut-over (retire Squarespace)
+
+1. Replace – B records to Netlify   35.2.60.5   – 99.83.190.102
+H A h<br>
+#"> | [point]| CAME — <https://simy.netlify.app>
+3. Netlify 2DOm...
+/4. Wait for SS –, then cancel Squarespace hosting.
+
+---
+
+_Last updated: 2025-07-25_
