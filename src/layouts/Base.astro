@@ -1,5 +1,5 @@
 ---
-import "../styles/global.css";
+import "../styles/global.css"; // Import CSS only once
 const { title = 'Shooting Quarterly' } = Astro.props;
 ---
 <!DOCTYPE html>
@@ -8,7 +8,6 @@ const { title = 'Shooting Quarterly' } = Astro.props;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title} — Shooting Quarterly</title>
-    <link rel="stylesheet" href="/styles/global.css" />
   </head>
   <body class="min-h-screen flex flex-col bg-zinc-50 text-zinc-900 font-sans">
     <header class="bg-white border-b">
