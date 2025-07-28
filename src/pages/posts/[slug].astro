@@ -2,7 +2,6 @@
 import Base from "../../layouts/Base.astro";
 import { getCollection } from "astro:content";
 
-/* 1) δηλώνουμε τα μονοπάτια -------------------------------------- */
 export async function getStaticPaths() {
   const posts = await getCollection("posts");
   return posts.map(post => ({
@@ -11,19 +10,18 @@ export async function getStaticPaths() {
   }));
 }
 
-/* 2) παίρνουμε το post από τα props ------------------------------ */
 const { post } = Astro.props;
+const { Content } = await post.render();
 ---
 
 <Base title={post.data.title}>
-  <article class="prose max-w-none">
+  <article class="prose prose-zinc mx-auto">
     <h1 class="text-4xl font-bold mb-4">{post.data.title}</h1>
     <p class="text-sm text-zinc-500 mb-6">
       {post.data.date.toLocaleDateString()} — {post.data.description}
     </p>
 
-    {post.body}        <!-- το HTML που αποδίδει το Markdown -->
+    <!-- ✅ Render the compiled MDX/Markdown component -->
+    <Content />
   </article>
 </Base>
----
-

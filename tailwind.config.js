@@ -1,8 +1,8 @@
 /** @type {import('tailwindcss').Config} */
-import typography from '@tailwindcss/typography';
+const typography = require('@tailwindcss/typography');
 
-export default {
-  content: ['./src/**/*.{astro,html,js,jsx,ts,tsx}'],
+module.exports = {
+  content: ['./src/**/*.{astro,html,js,jsx,ts,tsx,md}'],
   theme: {
     extend: {},
   },
