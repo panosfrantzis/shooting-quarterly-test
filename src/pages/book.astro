@@ -1,6 +1,6 @@
 ---
 const TITLE = "Book a Session";
-const CAL_USERNAME = "panos-frantzis"; // your Cal.com username
+const CAL_USERNAME = "panos-frantzis";
 ---
 
 <html lang="en">
@@ -8,130 +8,57 @@ const CAL_USERNAME = "panos-frantzis"; // your Cal.com username
     <meta charset="utf-8" />
     <title>{TITLE}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-
     <style>
-      :root {
-        --sq-bg: #ffffff;
-        --sq-text: #0f172a; /* slate-900 */
-        --sq-muted: #475569; /* slate-600 */
-        --sq-border: #e5e7eb; /* gray-200 */
-        --sq-card: #ffffff;
-        --sq-accent: #0ea5e9; /* sky-500 */
-        --sq-accent-contrast: #ffffff;
-        --sq-radius: 1.25rem; /* ~rounded-2xl */
-      }
-
       body {
-        min-height: 100vh;
-        background: var(--sq-bg);
-        color: var(--sq-text);
+        font-family: sans-serif;
         margin: 0;
-        font-family: system-ui, sans-serif;
+        padding: 0;
+        background: #fff;
+        color: #1f2937;
       }
 
-      .sq-container {
-        margin: 0 auto;
-        max-width: 64rem; /* ~max-w-4xl */
-        padding: 2.5rem 1rem;
+      main {
+        max-width: 720px;
+        margin: 2rem auto;
+        padding: 1rem;
       }
 
-      .sq-title {
-        margin-bottom: 1rem;
-        font-size: clamp(1.75rem, 2vw + 1rem, 2rem);
-        font-weight: 600;
-        color: var(--sq-text);
-      }
-
-      .sq-sub {
-        margin-bottom: 1.5rem;
-        color: var(--sq-muted);
-      }
-
-      .sq-card {
-        background: var(--sq-card);
-        border: 1px solid var(--sq-border);
-        border-radius: var(--sq-radius);
-        overflow: hidden;
-      }
-
-      /* Embed container – responsive height */
-      #cal-inline {
-        min-height: 900px;
-        height: calc(100dvh - 200px);
+      iframe {
         width: 100%;
+        height: 900px;
+        border: none;
+        border-radius: 1rem;
       }
 
-      @media (max-width: 640px) {
-        #cal-inline {
-          min-height: 1100px;
-        }
+      .fallback {
+        margin-top: 1rem;
+        font-size: 0.9rem;
       }
 
-      .sq-link {
-        color: var(--sq-accent);
+      .fallback a {
+        color: #0ea5e9;
         text-decoration: underline;
       }
-
-      /* Cal.com theming */
-      .cal-themed {
-        --cal-brand: var(--sq-accent);
-        --cal-brand-emphasis: var(--sq-accent);
-        --cal-text: var(--sq-text);
-        --cal-background: var(--sq-card);
-        --cal-border: var(--sq-border);
-        --cal-secondary: var(--sq-muted);
-        --cal-radius: var(--sq-radius);
-      }
     </style>
-
-    <link rel="preconnect" href="https://app.cal.com" />
-    <link rel="preconnect" href="https://cal.com" />
   </head>
 
   <body>
-    <main class="sq-container">
-      <h1 class="sq-title">{TITLE}</h1>
-      <p class="sq-sub">
-        Pick a session and lock your time. You’ll receive instant confirmation and reminders.
-      </p>
+    <main>
+      <h1>Book a Session</h1>
+      <p>Pick a session and lock your time. You’ll receive instant confirmation and reminders.</p>
 
-      <section class="sq-card">
-        <div id="cal-inline" class="cal-themed"></div>
-      </section>
+      <iframe
+        src={`https://cal.com/${CAL_USERNAME}?embed=true&hide_title=1`}
+        loading="lazy"
+        allowfullscreen
+      ></iframe>
 
-      <p class="sq-sub" style="margin-top:0.75rem">
+      <p class="fallback">
         If the widget doesn’t load, use the direct link:
-        <a class="sq-link" href={`https://cal.com/${CAL_USERNAME}`}>cal.com/{CAL_USERNAME}</a>
+        <a href={`https://cal.com/${CAL_USERNAME}`} target="_blank" rel="noopener noreferrer">
+          cal.com/{CAL_USERNAME}
+        </a>
       </p>
     </main>
-
-    <!-- Cal.com embed script -->
-    <script src="https://app.cal.com/embed/embed.js" async></script>
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const username = "{CAL_USERNAME}";
-
-        function ready() {
-          if (typeof Cal === "undefined") return setTimeout(ready, 100);
-          Cal("init");
-          Cal("inline", {
-            elementOrSelector: "#cal-inline",
-            calLink: username,
-            layout: "month_view"
-          });
-        }
-        ready();
-
-        // Fallback to iframe if JS never loads
-        setTimeout(() => {
-          const el = document.querySelector("#cal-inline");
-          if (!el || el.querySelector("iframe")) return;
-          if (typeof Cal === "undefined") {
-            el.outerHTML = `<iframe src="https://cal.com/${username}?hide_title=0"
-              style="width:100%;height:1200px;border:0" loading="lazy"></iframe>`;
-          }
-        }, 6000);
-      });
-    </script>
   </body>
 </html>
