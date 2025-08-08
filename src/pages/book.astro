@@ -1,17 +1,11 @@
 ---
-// src/pages/book.astro
-// Toggle look with URL param: /book?mode=raw or /book?mode=styled
-// Defaults to "styled".
-
 const TITLE = "Book a Session";
-const CAL_USERNAME = "panos-frantzis"; // shows all public event types (e.g. "panos")
-const MODE = Astro.url.searchParams.get("mode") ?? "styled";
+const CAL_USERNAME = "panos-frantzis";
 
-// Optional: direct event-type slugs for popup buttons (keep or remove)
+// Optional: direct event-type slugs for popup buttons
 const CAL_EVENT_SLUGS = [
   { label: "Intro", slug: "panos-frantzis/intro" },
   { label: "1:1 Coaching (60’)", slug: "panos-frantzis/coaching-60" },
-  // { label: "Match Debrief", slug: "panos-frantzis/debrief-30" },
 ];
 ---
 
@@ -20,34 +14,33 @@ const CAL_EVENT_SLUGS = [
     <meta charset="utf-8" />
     <title>{TITLE}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    {/*
-      Optional: basic styles if you’re NOT using Tailwind.
-      If you ARE using Tailwind, these utility classes already work.
-    */}
+
     <style>
       :root {
-        /* Default brand tokens for the STYLED mode (override to match your site) */
         --sq-bg: #ffffff;
-        --sq-text: #0f172a; /* slate-900 */
-        --sq-muted: #475569; /* slate-600 */
-        --sq-border: #e5e7eb; /* gray-200 */
+        --sq-text: #0f172a;
+        --sq-muted: #475569;
+        --sq-border: #e5e7eb;
         --sq-card: #ffffff;
-        --sq-accent: #0ea5e9; /* sky-500 */
-        --sq-accent-contrast: #ffffff;
-        --sq-radius: 1.25rem; /* ~rounded-2xl */
+        --sq-accent: #0ea5e9;
+        --sq-radius: 1.25rem;
+      }
+
+      body {
+        min-height: 100vh;
+        background: var(--sq-bg);
+        color: var(--sq-text);
       }
 
       .sq-container {
-        margin-left: auto;
-        margin-right: auto;
-        max-width: 64rem; /* ~max-w-4xl */
+        margin: 0 auto;
+        max-width: 64rem;
         padding: 2.5rem 1rem;
       }
       .sq-title {
-        margin-bottom: 1rem;
         font-size: clamp(1.75rem, 2vw + 1rem, 2rem);
         font-weight: 600;
-        color: var(--sq-text);
+        margin-bottom: 1rem;
       }
       .sq-sub {
         margin-bottom: 1.5rem;
@@ -58,11 +51,8 @@ const CAL_EVENT_SLUGS = [
         border: 1px solid var(--sq-border);
         border-radius: var(--sq-radius);
       }
-      .sq-pad {
-        padding: 1rem;
-      }
       .sq-embed {
-        height: 900px; /* avoid layout jump; adjust if needed */
+        height: 900px;
         width: 100%;
         border: 0;
         display: block;
@@ -71,25 +61,18 @@ const CAL_EVENT_SLUGS = [
         display: flex;
         gap: 0.5rem;
         flex-wrap: wrap;
-        margin: 1rem 0 0.75rem 0;
+        margin: 1rem 0 0.75rem;
       }
       .sq-btn {
         border: 1px solid var(--sq-border);
         border-radius: 0.75rem;
         padding: 0.5rem 0.75rem;
         background: #fff;
-        color: var(--sq-text);
         cursor: pointer;
       }
       .sq-btn:hover {
         border-color: var(--sq-accent);
       }
-      .sq-link {
-        color: var(--sq-accent);
-        text-decoration: underline;
-      }
-
-      /* Cal.com theming (only used in STYLED mode with JS embed) */
       .cal-themed {
         --cal-brand: var(--sq-accent);
         --cal-brand-emphasis: var(--sq-accent);
@@ -98,77 +81,69 @@ const CAL_EVENT_SLUGS = [
         --cal-border: var(--sq-border);
         --cal-secondary: var(--sq-muted);
         --cal-radius: var(--sq-radius);
-        /* Optional typography override (falls back to system fonts) */
-        /* --cal-font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; */
       }
     </style>
   </head>
 
-  <body style={`min-height:100vh;background:var(--sq-bg);color:var(--sq-text);`}>
+  <body>
     <main class="sq-container">
       <h1 class="sq-title">{TITLE}</h1>
+      <p class="sq-sub">
+        Pick a session and lock your time. You’ll get instant confirmation and reminders.
+      </p>
 
-      {
-        MODE === "styled" && (
-          <>
-            <p class="sq-sub">
-              Pick a session and lock your time. You’ll receive instant confirmation and reminders.
-            </p>
+      {CAL_EVENT_SLUGS.length > 0 && (
+        <div class="sq-actions">
+          {CAL_EVENT_SLUGS.map(({ label, slug }) => (
+            <button class="sq-btn" data-cal={slug}>{label}</button>
+          ))}
+        </div>
+      )}
 
-            {/* Optional: per-type popup buttons (keeps page light but gives direct options) */}
-            {CAL_EVENT_SLUGS.length > 0 && (
-              <div class="sq-actions" id="sq-actions">
-                {CAL_EVENT_SLUGS.map(({ label, slug }) => (
-                  <button class="sq-btn" data-cal={slug}>{label}</button>
-                ))}
-              </div>
-            )}
+      <section class="sq-card">
+        <div id="cal-inline" class="sq-embed cal-themed"></div>
+      </section>
 
-            {/* Inline embed (all public event types under your Cal.com profile) */}
-            <section class="sq-card">
-              <div id="cal-inline" class="sq-embed cal-themed"></div>
-            </section>
+      <p class="sq-sub" style="margin-top:0.75rem">
+        If the widget doesn’t load, use the direct link:{" "}
+        <a href={`https://cal.com/${CAL_USERNAME}`} target="_blank">
+          cal.com/{CAL_USERNAME}
+        </a>
+      </p>
 
-            <p class="sq-sub" style="margin-top:0.75rem">
-              If the widget doesn’t load, use the direct link:
-              {' '}
-              <a class="sq-link" href={`https://cal.com/${CAL_USERNAME}`}>cal.com/{CAL_USERNAME}</a>
-            </p>
+      <script src="https://app.cal.com/embed/embed.js" async></script>
+      <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          const CAL_USERNAME = "{CAL_USERNAME}";
+          let tries = 0;
 
-           {/* Cal.com embed script */}
-<script src="https://app.cal.com/embed/embed.js" async></script>
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    // Pass the server variable into the client
-    const CAL_USERNAME = "{CAL_USERNAME}";
+          function tryInitCal() {
+            if (typeof Cal === "undefined") {
+              if (tries++ < 60) return setTimeout(tryInitCal, 100);
+              // Fallback to iframe
+              document.querySelector("#cal-inline").outerHTML =
+                `<iframe src="https://cal.com/${CAL_USERNAME}?hide_title=0" class="sq-embed" loading="lazy"></iframe>`;
+              return;
+            }
 
-    let tries = 0;
-    function tryInitCal() {
-      if (typeof Cal === "undefined") {
-        if (tries++ < 60) return setTimeout(tryInitCal, 100);
-        // If script fails to load, fallback to iframe so it's never blank
-        const el = document.querySelector("#cal-inline");
-        if (el) {
-          el.outerHTML = `<iframe src="https://cal.com/${CAL_USERNAME}?hide_title=0" class="sq-embed" loading="lazy"></iframe>`;
-        }
-        return;
-      }
+            Cal("init");
 
-      Cal("init");
+            Cal("inline", {
+              elementOrSelector: "#cal-inline",
+              calLink: CAL_USERNAME,
+              layout: "month_view",
+            });
 
-      Cal("inline", {
-        elementOrSelector: "#cal-inline",
-        calLink: CAL_USERNAME,
-        layout: "month_view",
-      });
+            document.querySelectorAll("[data-cal]").forEach((btn) => {
+              btn.addEventListener("click", () => {
+                Cal("popup", { calLink: btn.dataset.cal });
+              });
+            });
+          }
 
-      document.querySelectorAll("[data-cal]").forEach(function (btn) {
-        btn.addEventListener("click", function () {
-          Cal("popup", { calLink: btn.dataset.cal });
+          tryInitCal();
         });
-      });
-    }
-
-    tryInitCal();
-  });
-</script>
+      </script>
+    </main>
+  </body>
+</html>
