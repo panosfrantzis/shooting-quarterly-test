@@ -139,22 +139,29 @@ const CAL_EVENT_SLUGS = [
 <script src="https://app.cal.com/embed/embed.js" async></script>
 <script>
   document.addEventListener("DOMContentLoaded", function () {
+    // Pass the server variable into the client
+    const CAL_USERNAME = "{CAL_USERNAME}";
+
+    let tries = 0;
     function tryInitCal() {
       if (typeof Cal === "undefined") {
-        setTimeout(tryInitCal, 100);
+        if (tries++ < 60) return setTimeout(tryInitCal, 100);
+        // If script fails to load, fallback to iframe so it's never blank
+        const el = document.querySelector("#cal-inline");
+        if (el) {
+          el.outerHTML = `<iframe src="https://cal.com/${CAL_USERNAME}?hide_title=0" class="sq-embed" loading="lazy"></iframe>`;
+        }
         return;
       }
 
       Cal("init");
 
-      // Inline embed
       Cal("inline", {
         elementOrSelector: "#cal-inline",
-        calLink: "panos-frantzis", // variable from above
-        layout: "month_view", // or "week_view"
+        calLink: CAL_USERNAME,
+        layout: "month_view",
       });
 
-      // Popup buttons for specific event types
       document.querySelectorAll("[data-cal]").forEach(function (btn) {
         btn.addEventListener("click", function () {
           Cal("popup", { calLink: btn.dataset.cal });
