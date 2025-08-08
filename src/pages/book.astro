@@ -1,64 +1,31 @@
 ---
-const TITLE = "Book a Session";
+import Base from "../layouts/Base.astro";
 const CAL_USERNAME = "panos-frantzis";
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>{TITLE}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <style>
-      body {
-        font-family: sans-serif;
-        margin: 0;
-        padding: 0;
-        background: #fff;
-        color: #1f2937;
-      }
+<Base title="Book a Session">
+  <h1 class="text-3xl font-bold mb-4">Book a Session</h1>
+  <p class="mb-6">
+    Pick a session and lock your time. You’ll receive instant confirmation and
+    reminders.
+  </p>
 
-      main {
-        max-width: 720px;
-        margin: 2rem auto;
-        padding: 1rem;
-      }
+  <iframe
+    src={`https://cal.com/${CAL_USERNAME}?embed=true&hide_title=1`}
+    loading="lazy"
+    allowfullscreen
+    class="w-full h-[900px] border-0 rounded-xl"
+  ></iframe>
 
-      iframe {
-        width: 100%;
-        height: 900px;
-        border: none;
-        border-radius: 1rem;
-      }
-
-      .fallback {
-        margin-top: 1rem;
-        font-size: 0.9rem;
-      }
-
-      .fallback a {
-        color: #0ea5e9;
-        text-decoration: underline;
-      }
-    </style>
-  </head>
-
-  <body>
-    <main>
-      <h1>Book a Session</h1>
-      <p>Pick a session and lock your time. You’ll receive instant confirmation and reminders.</p>
-
-      <iframe
-        src={`https://cal.com/${CAL_USERNAME}?embed=true&hide_title=1`}
-        loading="lazy"
-        allowfullscreen
-      ></iframe>
-
-      <p class="fallback">
-        If the widget doesn’t load, use the direct link:
-        <a href={`https://cal.com/${CAL_USERNAME}`} target="_blank" rel="noopener noreferrer">
-          cal.com/{CAL_USERNAME}
-        </a>
-      </p>
-    </main>
-  </body>
-</html>
+  <p class="mt-4 text-sm">
+    If the widget doesn’t load, use the direct link:
+    <a
+      href={`https://cal.com/${CAL_USERNAME}`}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="text-blue-500 underline"
+    >
+      cal.com/{CAL_USERNAME}
+    </a>
+  </p>
+</Base>
