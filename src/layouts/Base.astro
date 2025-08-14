@@ -1,25 +1,91 @@
 ---
 import "../styles/global.css"; // Import CSS only once
-const { title = 'Shooting Quarterly' } = Astro.props;
+const { title = "Shooting Quarterly" } = Astro.props;
 ---
-<!DOCTYPE html>
+
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
     <title>{title} — Shooting Quarterly</title>
   </head>
-  <body class="min-h-screen flex flex-col bg-zinc-50 text-zinc-900 font-sans">
-    <header class="bg-white border-b">
-      <div class="container mx-auto px-4 py-3 font-medium">
-        <a href="/" class="hover:underline">Shooting Quarterly</a>
+  <body class="min-h-screen flex flex-col bg-soft text-black font-sans">
+    <header class="bg-white shadow-md border-b border-zinc-200">
+      <div
+        class="container mx-auto px-4 py-4 flex items-center justify-between"
+      >
+        <a
+          href="/"
+          class="text-xl font-bold text-black hover:text-orange-600 transition-colors duration-200"
+        >
+          Shooting Quarterly
+        </a>
+        <button class="sm:hidden text-zinc-600" id="mobile-menu-button">
+          ☰
+        </button>
+        <nav class="hidden sm:flex space-x-4 text-sm text-zinc-600">
+          <a href="/" class="hover:underline hover:text-orange-600">Home</a>
+          <a href="/blog" class="hover:underline hover:text-orange-600">Blog</a>
+          <a href="/about" class="hover:underline hover:text-orange-600"
+            >About</a
+          >
+          <a href="/contact" class="hover:underline hover:text-orange-600"
+            >Contact</a
+          >
+        </nav>
+      </div>
+      <div
+        id="mobile-menu"
+        class="sm:hidden hidden flex-col space-y-2 px-4 pb-4"
+      >
+        <a
+          href="/"
+          class="block text-sm text-zinc-600 hover:text-orange-600 focus:text-orange-600 active:text-orange-600 visited:text-zinc-600 transition-colors duration-200"
+          >Home</a
+        >
+        <a
+          href="/blog"
+          class="block text-sm text-zinc-600 hover:text-orange-600 focus:text-orange-600 active:text-orange-600 visited:text-zinc-600 transition-colors duration-200"
+          >Blog</a
+        >
+        <a
+          href="/about"
+          class="block text-sm text-zinc-600 hover:text-orange-600 focus:text-orange-600 active:text-orange-600 visited:text-zinc-600 transition-colors duration-200"
+          >About</a
+        >
+        <a
+          href="/contact"
+          class="block text-sm text-zinc-600 hover:text-orange-600 focus:text-orange-600 active:text-orange-600 visited:text-zinc-600 transition-colors duration-200"
+          >Contact</a
+        >
       </div>
     </header>
     <main class="flex-1 container mx-auto px-4 py-8">
       <slot />
     </main>
-    <footer class="bg-zinc-100 text-center text-xs py-3">
+    <footer class="bg-soft text-secondary text-center text-xs py-3">
       © {new Date().getFullYear()} Shooting Quarterly
     </footer>
+    <script>
+      const menuButton = document.getElementById("mobile-menu-button");
+      const mobileMenu = document.getElementById("mobile-menu");
+
+      if (menuButton && mobileMenu) {
+        menuButton.addEventListener("click", () => {
+          mobileMenu.classList.toggle("hidden");
+        });
+
+        mobileMenu.querySelectorAll("a").forEach((link) => {
+          link.addEventListener("click", () => {
+            mobileMenu.classList.add("hidden");
+          });
+        });
+      }
+    </script>
   </body>
 </html>
