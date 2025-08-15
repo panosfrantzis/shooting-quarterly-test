@@ -1,6 +1,11 @@
 ---
 import "../styles/global.css"; // Import CSS only once
 const { title = "Shooting Quarterly" } = Astro.props;
+const pathname = Astro.url.pathname;
+const navClasses = (href: string): string =>
+  `${pathname === href ? "text-orange-600" : "text-zinc-600 hover:text-orange-600 hover:text-orange-600 hover:underline"} transition-colors duration-200`;
+const navCurrent = (href: string): "page" | undefined =>
+  pathname === href ? "page" : undefined;
 ---
 
 <!doctype html>
@@ -29,14 +34,28 @@ const { title = "Shooting Quarterly" } = Astro.props;
           ☰
         </button>
         <nav class="hidden sm:flex space-x-4 text-sm text-zinc-600">
-          <a href="/" class="hover:underline hover:text-orange-600">Home</a>
-          <a href="/blog" class="hover:underline hover:text-orange-600">Blog</a>
-          <a href="/book" class="hover:underline hover:text-orange-600">Book</a>
-          <a href="/about" class="hover:underline hover:text-orange-600"
-            >About</a
+          <a href="/" class={navClasses("/")} aria-current={navCurrent("/")}
+            >Home</a
           >
-          <a href="/contact" class="hover:underline hover:text-orange-600"
-            >Contact</a
+          <a
+            href="/blog"
+            class={navClasses("/blog")}
+            aria-current={navCurrent("/blog")}>Blog</a
+          >
+          <a
+            href="/book"
+            class={navClasses("/book")}
+            aria-current={navCurrent("/book")}>Book</a
+          >
+          <a
+            href="/about"
+            class={navClasses("/about")}
+            aria-current={navCurrent("/about")}>About</a
+          >
+          <a
+            href="/contact"
+            class={navClasses("/contact")}
+            aria-current={navCurrent("/contact")}>Contact</a
           >
         </nav>
       </div>
@@ -46,28 +65,28 @@ const { title = "Shooting Quarterly" } = Astro.props;
       >
         <a
           href="/"
-          class="block text-sm text-zinc-600 hover:text-orange-600 focus:text-orange-600 active:text-orange-600 visited:text-zinc-600 transition-colors duration-200"
-          >Home</a
+          class={`block text-sm ${navClasses("/")}`}
+          aria-current={navCurrent("/")}>Home</a
         >
         <a
           href="/blog"
-          class="block text-sm text-zinc-600 hover:text-orange-600 focus:text-orange-600 active:text-orange-600 visited:text-zinc-600 transition-colors duration-200"
-          >Blog</a
+          class={`block text-sm ${navClasses("/blog")}`}
+          aria-current={navCurrent("/blog")}>Blog</a
         >
         <a
           href="/book"
-          class="block text-sm text-zinc-600 hover:text-orange-600 focus:text-orange-600 active:text-orange-600 visited:text-zinc-600 transition-colors duration-200"
-          >Book</a
+          class={`block text-sm ${navClasses("/book")}`}
+          aria-current={navCurrent("/book")}>Book</a
         >
         <a
           href="/about"
-          class="block text-sm text-zinc-600 hover:text-orange-600 focus:text-orange-600 active:text-orange-600 visited:text-zinc-600 transition-colors duration-200"
-          >About</a
+          class={`block text-sm ${navClasses("/about")}`}
+          aria-current={navCurrent("/about")}>About</a
         >
         <a
           href="/contact"
-          class="block text-sm text-zinc-600 hover:text-orange-600 focus:text-orange-600 active:text-orange-600 visited:text-zinc-600 transition-colors duration-200"
-          >Contact</a
+          class={`block text-sm ${navClasses("/contact")}`}
+          aria-current={navCurrent("/contact")}>Contact</a
         >
       </div>
     </header>
