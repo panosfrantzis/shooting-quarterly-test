@@ -2,10 +2,24 @@
 import "../styles/global.css"; // Import CSS only once
 const { title = "Shooting Quarterly" } = Astro.props;
 const pathname = Astro.url.pathname;
+/** Match exact path, optional trailing slash, and section roots */
+const isCurrent = (href: string): boolean => {
+  if (href === "/") return pathname === "/";
+  return (
+    pathname === href ||
+    pathname === `${href}/` ||
+    pathname.startsWith(`${href}/`)
+  );
+};
+
+const baseLink =
+  "text-zinc-600 hover:text-orange-600 focus:text-orange-600 active:text-orange-600 hover:underline transition-colors duration-200";
+
 const navClasses = (href: string): string =>
-  `${pathname === href ? "text-orange-600" : "text-zinc-600 hover:text-orange-600 hover:text-orange-600 hover:underline"} transition-colors duration-200`;
+  `${baseLink} ${isCurrent(href) ? "text-orange-600" : ""}`;
+
 const navCurrent = (href: string): "page" | undefined =>
-  pathname === href ? "page" : undefined;
+  isCurrent(href) ? "page" : undefined;
 ---
 
 <!doctype html>
