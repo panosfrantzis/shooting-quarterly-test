@@ -2,14 +2,16 @@
 import "../styles/global.css"; // Import CSS only once
 const { title = "Shooting Quarterly" } = Astro.props;
 const pathname = Astro.url.pathname;
-/** Match exact path, optional trailing slash, and section roots */
+/** Normalize paths so `/about/` and `/about` match */
+const normalize = (p: string) =>
+  p !== "/" && p.endsWith("/") ? p.slice(0, -1) : p;
+
+/** Match exact path and section roots (e.g., `/about/team` keeps About active) */
 const isCurrent = (href: string): boolean => {
-  if (href === "/") return pathname === "/";
-  return (
-    pathname === href ||
-    pathname === `${href}/` ||
-    pathname.startsWith(`${href}/`)
-  );
+  const path = normalize(pathname);
+  const target = normalize(href);
+  if (target === "/") return path === "/";
+  return path === target || path.startsWith(`${target}/`);
 };
 
 const baseLink =
