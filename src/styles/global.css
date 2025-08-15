@@ -5,3 +5,17 @@
 body {
   @apply font-sans;
 }
+/* Active nav link: persist highlight using ARIA */
+a[aria-current="page"] {
+  @apply text-orange-600;
+}
+
+/* Improve tap feedback on touch screens */
+@media (hover: none) {
+  nav a:active,
+  #mobile-menu a:active,
+  nav a:focus,
+  #mobile-menu a:focus {
+    @apply text-orange-600;
+  }
+}
