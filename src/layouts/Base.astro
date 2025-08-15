@@ -112,21 +112,49 @@ const navCurrent = (href: string): "page" | undefined =>
     <footer class="bg-soft text-secondary text-center text-xs py-3">
       © {new Date().getFullYear()} Shooting Quarterly
     </footer>
-    <script>
+    <script is:inline>
+      // Normalize paths so "/about" === "/about/"
+      const norm = (p) => (p !== "/" && p.endsWith("/") ? p.slice(0, -1) : p);
+
+      // Mark the active nav link based on the real URL at runtime
+      const markActive = () => {
+        const cur = norm(location.pathname);
+        document.querySelectorAll("nav a, #mobile-menu a").forEach((a) => {
+          const href = a.getAttribute("href") || "/";
+          const path = norm(new URL(href, location.origin).pathname);
+          const isRoot = path === "/";
+          const match = isRoot
+            ? cur === "/"
+            : cur === path || cur.startsWith(path + "/");
+          if (match) {
+            a.setAttribute("aria-current", "page");
+            a.classList.add("text-orange-600");
+          } else {
+            a.removeAttribute("aria-current");
+            a.classList.remove("text-orange-600");
+          }
+        });
+      };
+
+      // Mobile menu toggle
       const menuButton = document.getElementById("mobile-menu-button");
       const mobileMenu = document.getElementById("mobile-menu");
-
       if (menuButton && mobileMenu) {
-        menuButton.addEventListener("click", () => {
-          mobileMenu.classList.toggle("hidden");
-        });
-
-        mobileMenu.querySelectorAll("a").forEach((link) => {
-          link.addEventListener("click", () => {
-            mobileMenu.classList.add("hidden");
-          });
-        });
+        menuButton.addEventListener("click", () =>
+          mobileMenu.classList.toggle("hidden")
+        );
+        mobileMenu
+          .querySelectorAll("a")
+          .forEach((link) =>
+            link.addEventListener("click", () =>
+              mobileMenu.classList.add("hidden")
+            )
+          );
       }
+
+      // Run now + after any client-side route swaps
+      markActive();
+      window.addEventListener("astro:after-swap", markActive);
     </script>
   </body>
 </html>
