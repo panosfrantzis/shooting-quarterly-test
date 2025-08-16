@@ -1,160 +1,70 @@
----
-import "../styles/global.css"; // Import CSS only once
-const { title = "Shooting Quarterly" } = Astro.props;
-const pathname = Astro.url.pathname;
-/** Normalize paths so `/about/` and `/about` match */
-const normalize = (p: string) =>
-  p !== "/" && p.endsWith("/") ? p.slice(0, -1) : p;
+/* Optimized font loading with preload in HTML */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 
-/** Match exact path and section roots (e.g., `/about/team` keeps About active) */
-const isCurrent = (href: string): boolean => {
-  const path = normalize(pathname);
-  const target = normalize(href);
-  if (target === "/") return path === "/";
-  return path === target || path.startsWith(`${target}/`);
-};
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-const baseLink =
-  "text-zinc-600 hover:text-orange-600 focus:text-orange-600 active:text-orange-600 hover:underline transition-colors duration-200";
+/* Base typography */
+body {
+  @apply font-sans text-brand-black bg-brand-soft;
+}
 
-const navClasses = (href: string): string =>
-  `${baseLink} ${isCurrent(href) ? "text-orange-600" : ""}`;
+/* Navigation active states - using proper brand colors */
+a[aria-current="page"] {
+  @apply text-brand-primary font-medium;
+}
 
-const navCurrent = (href: string): "page" | undefined =>
-  isCurrent(href) ? "page" : undefined;
----
+/* Navigation hover states */
+nav a:hover,
+#mobile-menu a:hover {
+  @apply text-brand-primary underline;
+}
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
-      rel="stylesheet"
-    />
-    <title>{title} — Shooting Quarterly</title>
-  </head>
-  <body class="min-h-screen flex flex-col bg-soft text-black font-sans">
-    <header class="bg-white shadow-md border-b border-zinc-200">
-      <div
-        class="container mx-auto px-4 py-4 flex items-center justify-between"
-      >
-        <a
-          href="/"
-          class="text-xl font-bold text-black hover:text-orange-600 transition-colors duration-200"
-        >
-          Shooting Quarterly
-        </a>
-        <button class="sm:hidden text-zinc-600" id="mobile-menu-button">
-          ☰
-        </button>
-        <nav class="hidden sm:flex space-x-4 text-sm text-zinc-600">
-          <a href="/" class={navClasses("/")} aria-current={navCurrent("/")}
-            >Home</a
-          >
-          <a
-            href="/blog"
-            class={navClasses("/blog")}
-            aria-current={navCurrent("/blog")}>Blog</a
-          >
-          <a
-            href="/book"
-            class={navClasses("/book")}
-            aria-current={navCurrent("/book")}>Book</a
-          >
-          <a
-            href="/about"
-            class={navClasses("/about")}
-            aria-current={navCurrent("/about")}>About</a
-          >
-          <a
-            href="/contact"
-            class={navClasses("/contact")}
-            aria-current={navCurrent("/contact")}>Contact</a
-          >
-        </nav>
-      </div>
-      <div
-        id="mobile-menu"
-        class="sm:hidden hidden flex-col space-y-2 px-4 pb-4"
-      >
-        <a
-          href="/"
-          class={`block text-sm ${navClasses("/")}`}
-          aria-current={navCurrent("/")}>Home</a
-        >
-        <a
-          href="/blog"
-          class={`block text-sm ${navClasses("/blog")}`}
-          aria-current={navCurrent("/blog")}>Blog</a
-        >
-        <a
-          href="/book"
-          class={`block text-sm ${navClasses("/book")}`}
-          aria-current={navCurrent("/book")}>Book</a
-        >
-        <a
-          href="/about"
-          class={`block text-sm ${navClasses("/about")}`}
-          aria-current={navCurrent("/about")}>About</a
-        >
-        <a
-          href="/contact"
-          class={`block text-sm ${navClasses("/contact")}`}
-          aria-current={navCurrent("/contact")}>Contact</a
-        >
-      </div>
-    </header>
-    <main class="flex-1 container mx-auto px-4 py-8">
-      <slot />
-    </main>
-    <footer class="bg-soft text-secondary text-center text-xs py-3">
-      © {new Date().getFullYear()} Shooting Quarterly
-    </footer>
-    <script is:inline>
-      // Normalize paths so "/about" === "/about/"
-      const norm = (p) => (p !== "/" && p.endsWith("/") ? p.slice(0, -1) : p);
+/* Focus states for accessibility */
+nav a:focus-visible,
+#mobile-menu a:focus-visible {
+  @apply text-brand-primary underline outline-2 outline-brand-primary outline-offset-2;
+}
 
-      // Mark the active nav link based on the real URL at runtime
-      const markActive = () => {
-        const cur = norm(location.pathname);
-        document.querySelectorAll("nav a, #mobile-menu a").forEach((a) => {
-          const href = a.getAttribute("href") || "/";
-          const path = norm(new URL(href, location.origin).pathname);
-          const isRoot = path === "/";
-          const match = isRoot
-            ? cur === "/"
-            : cur === path || cur.startsWith(path + "/");
-          if (match) {
-            a.setAttribute("aria-current", "page");
-            a.classList.add("text-orange-600");
-          } else {
-            a.removeAttribute("aria-current");
-            a.classList.remove("text-orange-600");
-          }
-        });
-      };
+/* Touch device improvements */
+@media (hover: none) {
+  nav a:active,
+  #mobile-menu a:active {
+    @apply text-brand-primary bg-black-haze/20;
+  }
+}
 
-      // Mobile menu toggle
-      const menuButton = document.getElementById("mobile-menu-button");
-      const mobileMenu = document.getElementById("mobile-menu");
-      if (menuButton && mobileMenu) {
-        menuButton.addEventListener("click", () =>
-          mobileMenu.classList.toggle("hidden")
-        );
-        mobileMenu
-          .querySelectorAll("a")
-          .forEach((link) =>
-            link.addEventListener("click", () =>
-              mobileMenu.classList.add("hidden")
-            )
-          );
-      }
+/* Button base styles using brand colors */
+.btn-primary {
+  @apply bg-brand-primary hover:bg-christine-hover text-white px-4 py-2 rounded transition-colors duration-200;
+}
 
-      // Run now + after any client-side route swaps
-      markActive();
-      window.addEventListener("astro:after-swap", markActive);
-    </script>
-  </body>
-</html>
+.btn-secondary {
+  @apply bg-transparent hover:bg-black-haze text-brand-primary border border-brand-primary px-4 py-2 rounded transition-all duration-200;
+}
+
+/* Typography improvements */
+.prose-brand {
+  @apply prose prose-zinc max-w-none;
+}
+
+.prose-brand h1,
+.prose-brand h2,
+.prose-brand h3 {
+  @apply text-brand-black;
+}
+
+.prose-brand a {
+  @apply text-brand-primary hover:text-christine-hover no-underline hover:underline;
+}
+
+/* Mobile menu enhancements */
+#mobile-menu {
+  @apply bg-white border-t border-black-haze/30;
+}
+
+/* Logo/brand hover state */
+.brand-logo:hover {
+  @apply text-brand-primary;
+}
