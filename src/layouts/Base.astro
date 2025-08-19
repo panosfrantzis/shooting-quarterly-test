@@ -57,6 +57,145 @@ const getAriaCurrent = (href: string) => (isCurrent(href) ? "page" : undefined);
     />
 
     <title>{title} — Shooting Quarterly</title>
+
+    <style>
+      /* Critical: Add these styles for touch feedback */
+      @media (hover: none) and (pointer: coarse) {
+        /* Real mobile devices */
+        a[href="/"]:active {
+          color: #e9560d !important;
+        }
+      }
+
+      /* For when JavaScript adds the class */
+      .logo-touching {
+        color: #e9560d !important;
+        transition: none !important;
+      }
+
+      /* Data attribute approach */
+      a[href="/"][data-touching="true"] {
+        color: #e9560d !important;
+      }
+    </style>
+
+    <script>
+      // Single, unified touch handler that works everywhere
+      if (typeof window !== "undefined") {
+        document.addEventListener("DOMContentLoaded", () => {
+          const initLogoTouch = () => {
+            const logo = document.querySelector('a[href="/"]');
+            if (!logo) {
+              console.log("Logo not found");
+              return;
+            }
+
+            console.log("Initializing logo touch handler");
+
+            let touchActive = false;
+            let touchTimeout;
+            let styleElement;
+
+            const activateOrange = () => {
+              if (touchActive) return;
+              touchActive = true;
+
+              console.log("Activating orange color");
+
+              // Method 1: Dynamic style element (highest priority)
+              if (!styleElement) {
+                styleElement = document.createElement("style");
+                styleElement.id = "logo-touch-style";
+                styleElement.textContent = `
+                  a[href="/"] {
+                    color: #E9560D !important;
+                    transition: none !important;
+                  }
+                `;
+                document.head.appendChild(styleElement);
+              }
+
+              // Method 2: Multiple attributes for redundancy
+              logo.setAttribute("data-touching", "true");
+              logo.classList.add("logo-touching");
+
+              // Method 3: Inline style as backup
+              logo.style.cssText = "color: #E9560D !important;";
+
+              // Clear any existing timeout
+              clearTimeout(touchTimeout);
+
+              // Keep orange for 3 seconds
+              touchTimeout = setTimeout(() => {
+                deactivateOrange();
+              }, 3000);
+            };
+
+            const deactivateOrange = () => {
+              console.log("Deactivating orange color");
+              touchActive = false;
+
+              // Remove all style modifications
+              if (styleElement) {
+                styleElement.remove();
+                styleElement = null;
+              }
+              logo.removeAttribute("data-touching");
+              logo.classList.remove("logo-touching");
+              logo.style.cssText = "";
+            };
+
+            // CRITICAL: Handle both touch AND pointer events for DevTools
+            logo.addEventListener(
+              "touchstart",
+              (e) => {
+                console.log("Real touchstart event");
+                activateOrange();
+              },
+              { passive: true }
+            );
+
+            // This is what Chrome DevTools actually fires
+            logo.addEventListener("pointerdown", (e) => {
+              if (e.pointerType === "touch" || e.pointerType === "pen") {
+                console.log("Pointer event (touch simulation)");
+                activateOrange();
+              }
+            });
+
+            // For desktop testing - click simulation
+            logo.addEventListener("click", (e) => {
+              // Only activate on desktop (no touch support)
+              if (
+                !("ontouchstart" in window) &&
+                !window.matchMedia("(pointer: coarse)").matches
+              ) {
+                console.log("Desktop click - simulating touch");
+                e.preventDefault();
+                activateOrange();
+              }
+            });
+
+            // Handle touchend/pointerup to ensure cleanup
+            logo.addEventListener("touchend", () => {
+              console.log("Touchend - waiting before cleanup");
+            });
+
+            logo.addEventListener("pointerup", (e) => {
+              if (e.pointerType === "touch" || e.pointerType === "pen") {
+                console.log("Pointerup - waiting before cleanup");
+              }
+            });
+          };
+
+          // Initialize immediately
+          initLogoTouch();
+
+          // Reinitialize after Astro navigation
+          document.addEventListener("astro:after-swap", initLogoTouch);
+        });
+      }
+    </script>
   </head>
 
   <body
@@ -67,10 +206,10 @@ const getAriaCurrent = (href: string) => (isCurrent(href) ? "page" : undefined);
       <div
         class="container mx-auto px-4 py-4 flex items-center justify-between"
       >
-        <!-- Logo/Brand -->
+        <!-- Logo/Brand with proper mobile hover states -->
         <a
           href="/"
-          class="text-xl font-bold text-pure-black hover:text-christine transition-colors duration-200"
+          class="text-xl font-bold text-pure-black hover:text-christine focus:text-christine active:text-christine transition-colors duration-200 touch-manipulation"
         >
           Shooting Quarterly
         </a>
@@ -153,9 +292,9 @@ const getAriaCurrent = (href: string) => (isCurrent(href) ? "page" : undefined);
       </p>
     </footer>
 
-    <!-- Minimal JavaScript for Mobile Menu Only -->
+    <!-- Mobile Menu JavaScript Only (no logo touch handling here!) -->
     <script is:inline>
-      // Mobile menu toggle - NO navigation state management
+      // Mobile menu toggle ONLY - removed all logo touch code from here
       const menuButton = document.getElementById("mobile-menu-button");
       const mobileMenu = document.getElementById("mobile-menu");
 
@@ -188,6 +327,8 @@ const getAriaCurrent = (href: string) => (isCurrent(href) ? "page" : undefined);
           }
         });
       }
+
+      // NO LOGO TOUCH CODE HERE - it's all in the head script now
     </script>
   </body>
 </html>
