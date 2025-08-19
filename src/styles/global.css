@@ -59,12 +59,59 @@ nav a:focus-visible,
   @apply text-brand-primary hover:text-christine-hover no-underline hover:underline;
 }
 
-/* Mobile menu enhancements */
-#mobile-menu {
-  @apply bg-white border-t border-black-haze/30;
+/* Clean mobile menu - no conflicts */
+* {
+  -webkit-tap-highlight-color: transparent;
 }
 
-/* Logo/brand hover state */
-.brand-logo:hover {
-  @apply text-brand-primary;
+/* Mobile menu */
+#mobile-menu {
+  transition: opacity 0.3s ease, max-height 0.3s ease;
+  overflow: hidden;
+  background-color: white;
+  border-top: 1px solid rgba(234, 235, 235, 0.3);
+}
+
+#mobile-menu.hidden {
+  opacity: 0;
+  max-height: 0;
+}
+
+#mobile-menu:not(.hidden) {
+  opacity: 1;
+  max-height: 300px;
+}
+
+/* Navigation transitions - exclude logo */
+nav a:not([href="/"]),
+#mobile-menu a {
+  transition: color 0.2s ease;
+}
+
+/* Orange active states - exclude logo */
+nav a[aria-current="page"]:not([href="/"]),
+#mobile-menu a[aria-current="page"] {
+  color: #E9560D !important;
+  font-weight: 500;
+}
+
+/* Navigation hover - exclude logo */
+#mobile-menu a:hover,
+nav a[href="/blog"]:hover,
+nav a[href="/book"]:hover,
+nav a[href="/about"]:hover,
+nav a[href="/contact"]:hover {
+  color: #E9560D !important;
+}
+
+/* Logo gets NO interference */
+a[href="/"] {
+  transition: none !important;
+}
+
+/* Force orange classes for logo */
+.force-orange,
+[data-orange="true"] {
+  color: #E9560D !important;
+  /* Remove yellow background */
 }
