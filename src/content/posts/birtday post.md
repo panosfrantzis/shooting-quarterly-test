@@ -1,8 +1,8 @@
 ---
-title: "Birthday Post"
+title: "Test Post"
 date: 2025-07-29
-description: "happy birthday"
-tags: ["birthday"]
+description: "Test it"
+tags: ["test"]
 ---
 
 ## 🥇 Trap Mixed Team – Final Results  
